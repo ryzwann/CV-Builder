@@ -1,0 +1,386 @@
+/* Custom Styles & Font Configuration */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700;900&display=swap');
+
+/* Warna Disesuaikan: Hanya Hijau Tosca (Tosca/Dark Slate Green) */
+:root {
+    --primary-color: #00A5A5; /* Hijau Tosca */
+    --primary-dark: #2F4F4F;  /* Dark Slate Green (Warna gelap untuk teks/background header) */
+    --primary-bg: #2F4F4F;    /* Background Sidebar */
+    --primary-light: #049797; /* Aqua muda untuk background hero/accent ringan */
+    --accent-color: #40E0D0;  /* Cyan Turqoise untuk aksen cerah (tetap dekat tosca) */
+    --text-color: #1f2937; 
+    --muted-text: #6b7280; 
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f1f5f9;
+    color: var(--text-color);
+    transition: background-color 0.3s;
+}
+
+/* --- LANDING PAGE STYLES --- */
+.hero-bg {
+    background-image: linear-gradient(135deg, var(--primary-light) 0%, #f7f3ff 60%, #fff 100%); 
+}
+.cta-gradient {
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%); 
+    box-shadow: 0 4px 15px rgba(0, 165, 165, 0.4);
+    transition: all 0.2s;
+}
+.cta-gradient:hover {
+    background: linear-gradient(90deg, var(--primary-dark) 0%, var(--primary-color) 100%);
+    box-shadow: 0 6px 20px rgba(0, 100, 100, 0.6);
+    transform: scale(1.03);
+}
+.logo-text {
+    color: var(--primary-color);
+}
+.step-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* --- BUILDER LAYOUT STYLES (DIPERBAIKI) --- */
+@media(min-width: 1024px){
+    /* Main Layout Grid */
+    .builder-container {
+        grid-template-columns: 1fr 2fr 2fr;
+        max-width: 1500px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 100vh;
+    }
+    .sidebar-collapsed .builder-container {
+        grid-template-columns: 0fr 3fr 2fr !important;
+    }
+
+    /* Sidebar */
+    #builder-sidebar {
+        background-color: var(--primary-bg);
+        color: white;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        padding: 30px 0;
+        margin-left: 0; 
+        transition: all 0.3s ease-in-out;
+        overflow-y: auto; 
+    }
+    .sidebar-collapsed #builder-sidebar {
+        width: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    /* Form Area */
+    #builder-form-area {
+        padding: 2.5rem; 
+        background-color: #f9fafb; 
+        overflow-y: auto; 
+        height: 100vh; 
+    }
+    
+    /* Preview Area */
+    #builder-preview-panel {
+        position: sticky;
+        top: 0; 
+        height: 100vh;
+        padding-top: 2rem;
+        overflow-y: auto; 
+        padding-right: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+}
+
+/* Sidebar Navigation Item Styles (FIXED) */
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 30px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+.sidebar-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.sidebar-item.active {
+    background-color: var(--primary-color); 
+    font-weight: 700;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    position: relative;
+}
+.sidebar-item svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+    flex-shrink: 0;
+    color: white; 
+}
+
+/* --- CV BOX STYLES (Template Baru: Modern Pro - FIXED) --- */
+.cv-box {
+    width: 210mm; /* Lebar A4 */
+    height: 297mm; /* Tinggi A4 */
+    max-width: 100%; 
+    background: white;
+    padding: 16px; 
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+    position: relative; 
+    font-family: 'Inter', sans-serif;
+    transform-origin: top; 
+}
+
+/* MODERN PRO TEMPLATE MAIN GRID */
+.cv-modern-pro {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 15% 1fr; 
+    font-size: 9pt;
+    line-height: 1.3;
+    color: var(--primary-dark); 
+    position: relative;
+    overflow: hidden; 
+}
+
+/* COMPLEX BACKGROUND SHAPES (WAVES) */
+.cv-modern-pro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38%; 
+    height: 40%; 
+    background: var(--primary-dark); 
+    z-index: 0;
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 75% 85%, 50% 80%, 25% 90%, 0% 80%);
+}
+.cv-modern-pro::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 70%; 
+    height: 30%; 
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+    z-index: 0;
+    clip-path: polygon(100% 100%, 0% 100%, 25% 20%, 50% 30%, 75% 10%, 100% 0%);
+}
+.cv-modern-pro .small-accent-wave {
+    content: '';
+    position: absolute;
+    top: 13%;
+    left: 35%;
+    width: 10%;
+    height: 10%;
+    background: var(--accent-color);
+    z-index: 1; 
+    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 100%);
+    opacity: 0.5;
+}
+
+/* HEADER STYLES */
+.cv-modern-pro .header-area {
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    position: relative;
+    z-index: 5; 
+}
+.cv-modern-pro .header-content {
+    z-index: 5;
+    padding-left: 100px; 
+    padding-top: 10px;
+}
+.cv-modern-pro .header-area h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18pt;
+    font-weight: 900;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--primary-dark); 
+}
+.cv-modern-pro .header-area h2 {
+    font-size: 10pt;
+    font-weight: 500;
+    color: #555;
+    margin-top: 2px;
+    text-transform: uppercase;
+}
+.cv-modern-pro .profile-pic-container {
+    width: 90px;
+    height: 90px;
+    min-width: 90px;
+    border-radius: 50%;
+    background: white;
+    border: 4px solid var(--accent-color); 
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; 
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    box-shadow: 0 0 0 4px var(--primary-dark); 
+}
+.cv-modern-pro .profile-pic-container svg {
+     width: 50px;
+     height: 50px;
+     color: #ccc;
+}
+
+/* BODY CONTENT (TWO COLUMNS) */
+.cv-modern-pro .body-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 15px 20px;
+    z-index: 5; 
+}
+
+/* SECTION HEADERS */
+.cv-modern-pro .section {
+    margin-bottom: 15px;
+    position: relative;
+    padding-top: 5px;
+}
+.cv-modern-pro .section-title {
+    font-size: 11pt;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--primary-dark);
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--primary-color); 
+    padding-bottom: 2px;
+    margin-bottom: 6px;
+}
+
+/* EXPERIENCE & EDUCATION ITEMS */
+.cv-modern-pro .item {
+    margin-bottom: 10px;
+}
+.cv-modern-pro .item-title {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--primary-dark);
+    display: block;
+}
+.cv-modern-pro .item-subtitle {
+    font-size: 8pt;
+    font-weight: 500;
+    color: var(--primary-color); 
+    display: block;
+}
+.cv-modern-pro ul {
+    list-style-type: disc;
+    padding-left: 15px;
+    margin-top: 5px;
+}
+.cv-modern-pro ul li {
+    font-size: 9pt;
+    line-height: 1.2;
+}
+.cv-modern-pro .skills-list {
+    display: flex;
+    flex-direction: column; 
+    gap: 5px;
+    margin-top: 5px;
+}
+.cv-modern-pro .skills-list div {
+    font-size: 9pt;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Watermark dan form umum */
+.watermark{
+    position:absolute;
+    font-size:30px; 
+    color:rgba(0,0,0,0.08);
+    transform:rotate(-20deg);
+    pointer-events:none;
+    left:50%;
+    top:50%;
+    translate:-50% -50%;
+    font-weight: 800;
+    z-index: 100;
+}
+.dynamic-row { padding: 15px; border: 1px dashed #d1d5db; border-radius: 8px; position: relative; }
+.dynamic-row:not(:last-child) { margin-bottom: 15px; }
+
+
+/* --- CSS Wajib untuk Loading Spinner --- */
+
+/* Gaya Spinner Utama */
+.livecareer-loading-icon {
+    /* Warna latar belakang lingkaran (abu-abu muda) */
+    border: 8px solid #f3f3f3; 
+    /* Warna yang berputar (hijau/teal) */
+    border-top: 8px solid #10b981; 
+    border-radius: 50%; 
+    width: 60px;
+    height: 60px;
+    /* Mulai animasi */
+    animation: spin 1.5s linear infinite; 
+}
+
+/* Keyframes untuk Animasi Berputar */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Pastikan elemen loading-icon-container ada di CSS Anda jika menggunakan class tersebut --- */
+.loading-icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- OVERLAY INTERSTITIAL SCREEN FIX (Sidebar Visible - Final) --- */
+
+#interstitial-step2 {
+    /* Mengubah dari fixed ke absolute, membuatnya relatif terhadap main#builder */
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%; /* Mengcover 100% dari lebar parent (main#builder) */
+    height: 100%; /* Mengcover 100% dari tinggi parent */
+    z-index: 100; /* Z-index yang tinggi dalam container builder */
+    
+    /* Warna latar belakang overlay */
+    background-color: rgba(47, 79, 79, 0.95); 
+    
+    /* Layout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Wajib: Memberi posisi relatif pada main builder agar absolute bekerja */
+main#builder {
+    position: relative; 
+    /* Pastikan tinggi minimal sudah di-set di main#builder */
+}
+
+/* Hapus semua media query untuk #interstitial-step2 */
+@media(min-width: 1024px) {
+    /* Pastikan tidak ada aturan khusus untuk interstitial-step2 di sini */
+}
+

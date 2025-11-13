@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoCV Pro - Masuk</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* Skema Warna Konsisten */
+        :root {
+            --primary-color: #00A5A5; /* Hijau Tosca */
+            --primary-dark: #2F4F4F;  /* Dark Slate Green */
+            --accent-color: #40E0D0;  /* Cyan Turqoise */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .login-card {
+            max-width: 420px;
+            width: 95%;
+            padding: 30px;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            transition: background-color 0.2s, border-color 0.2s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        /* Style Khusus untuk Apple (diambil dari gambar referensi) */
+        .social-btn.apple {
+            background-color: black;
+            color: white;
+            border: 1px solid black;
+        }
+        .social-btn.apple:hover {
+            background-color: #333;
+        }
+        /* Style untuk Google dan Facebook */
+        .social-btn.google, .social-btn.facebook {
+            background-color: white;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+        .social-btn.google:hover {
+            background-color: #f0f0f0;
+        }
+        .social-btn.facebook:hover {
+            background-color: #f0f0f0;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 25px 0;
+            color: #888;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        .divider:not(:empty)::before {
+            margin-right: 15px;
+        }
+        .divider:not(:empty)::after {
+            margin-left: 15px;
+        }
+        /* Style Submit Button (Menggunakan skema warna Tosca) */
+        .submit-btn {
+            background-color: var(--primary-color); 
+            color: white;
+            font-size: 1.125rem;
+            padding: 15px 0;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: background-color 0.2s;
+        }
+        .submit-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        input[type="email"], input[type="password"] {
+            border: 1px solid #ccc;
+            padding: 12px;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h1 class="text-2xl font-bold text-center mb-6">Selamat datang kembali! Silakan masuk.</h1>
+        
+        <!-- Social Login Buttons -->
+        <div class="space-y-3">
+            <a href="https://www.livecareer.com/signin" class="social-btn apple" onclick="return simulateLogin('Apple')">
+                <i class="fab fa-apple mr-3 text-lg"></i> Sign in with Apple
+            </a>
+            <a href="https://www.livecareer.com/signin" class="social-btn google" onclick="return simulateLogin('Google')">
+                <i class="fab fa-google mr-3 text-lg text-red-500"></i> Sign in with Google
+            </a>
+            <a href="https://www.livecareer.com/signin" class="social-btn facebook" onclick="return simulateLogin('Facebook')">
+                <i class="fab fa-facebook-f mr-3 text-lg text-blue-600"></i> Sign in with Facebook
+            </a>
+        </div>
+
+        <div class="divider text-sm">ATAU</div>
+
+        <!-- Email/Password Form -->
+        <form id="loginForm" onsubmit="return handleLogin(event)">
+            <div>
+                <label for="email" class="text-sm font-medium text-gray-700">Alamat Email</label>
+                <input id="email" type="email" placeholder="Alamat Email" required>
+            </div>
+            
+            <div>
+                <label for="password" class="text-sm font-medium text-gray-700">Kata Sandi</label>
+                <input id="password" type="password" placeholder="Kata Sandi" required minlength="6" maxlength="16">
+                <p class="text-xs text-gray-500 mb-4">Kata sandi harus antara 6-16 karakter.</p>
+            </div>
+            
+            <a href="https://www.livecareer.com/signin" class="text-sm font-medium text-blue-600 hover:underline mb-4 block" onclick="alert('Fungsi reset password belum diimplementasikan.')">Lupa kata sandi Anda?</a>
+            
+            <button type="submit" class="submit-btn">SUBMIT</button>
+        </form>
+
+        <p class="text-center text-xs text-gray-500 mt-6">
+            Dengan mengklik 'SUBMIT', Anda juga menyetujui kami untuk 
+            <a href="https://www.livecareer.com/signin" class="text-blue-600 hover:underline" onclick="alert('Membuka Syarat & Ketentuan')">Syarat dan Ketentuan</a> dan 
+            <a href="https://www.livecareer.com/signin" class="text-blue-600 hover:underline" onclick="alert('Membuka Kebijakan Privasi')">Kebijakan Privasi</a>.
+        </p>
+
+    </div>
+
+    <script>
+        function simulateLogin(provider) {
+            alert(`Simulasi login dengan ${provider}. Anda akan diarahkan ke laman ${provider}.`);
+            // Dalam implementasi nyata, ini akan memicu otentikasi pihak ketiga.
+            return true; // Memungkinkan tautan href untuk diproses jika ini adalah tautan nyata
+        }
+
+        function handleLogin(event) {
+            event.preventDefault(); 
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (password.length < 6 || password.length > 16) {
+                alert("Kata sandi tidak valid. Harus antara 6-16 karakter.");
+                return;
+            }
+
+            // SIMULASI PROSES LOGIN
+            alert(`Simulasi Login Berhasil! Email: ${email}`);
+            
+            // Di sini Anda akan mengarahkan pengguna ke dashboard utama atau CV builder.
+            // Contoh pengalihan (sesuai permintaan user, meskipun ini bukan behavior login normal):
+            window.location.href = 'https://www.livecareer.com/signin';
+        }
+    </script>
+</body>
+</html>
